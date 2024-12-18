@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://d3wo4lowr83ju"]
+[gd_scene load_steps=11 format=4 uid="uid://d3wo4lowr83ju"]
 
 [ext_resource type="Texture2D" uid="uid://5nkd66wnenks" path="res://buildings.png" id="1_o2hqy"]
 [ext_resource type="Script" path="res://main.gd" id="1_oewtb"]
 [ext_resource type="Texture2D" uid="uid://cbo7d7qnj0pp" path="res://gound.png" id="1_uavov"]
 [ext_resource type="Script" path="res://camera.gd" id="2_od5ws"]
+[ext_resource type="TileSet" uid="uid://hfnclqg4uy2k" path="res://buildings_tileset.tres" id="3_n3yot"]
 [ext_resource type="Texture2D" uid="uid://cuogc85ektob4" path="res://target.png" id="4_vnykd"]
 [ext_resource type="Script" path="res://info.gd" id="5_xiu6d"]
+[ext_resource type="Script" path="res://UI/ui.gd" id="6_e5y23"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8l6pj"]
 texture = ExtResource("1_uavov")
@@ -29,102 +31,6 @@ custom_data_layer_0/name = "food"
 custom_data_layer_0/type = 2
 sources/2 = SubResource("TileSetAtlasSource_8l6pj")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1y6t"]
-texture = ExtResource("1_o2hqy")
-texture_region_size = Vector2i(128, 64)
-1:0/size_in_atlas = Vector2i(1, 2)
-1:0/0 = 0
-1:0/0/texture_origin = Vector2i(0, 32)
-1:0/0/custom_data_0 = &"tower"
-2:0/size_in_atlas = Vector2i(1, 2)
-2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, 32)
-2:0/0/custom_data_0 = &"warehouse"
-3:0/size_in_atlas = Vector2i(1, 2)
-3:0/0 = 0
-3:0/0/texture_origin = Vector2i(0, 32)
-3:0/0/custom_data_0 = &"dome"
-3:0/0/custom_data_1 = 50
-3:2/size_in_atlas = Vector2i(1, 2)
-3:2/0 = 0
-3:2/0/texture_origin = Vector2i(0, 32)
-3:2/0/custom_data_0 = &"teamsters"
-2:2/size_in_atlas = Vector2i(1, 2)
-2:2/0 = 0
-2:2/0/texture_origin = Vector2i(0, 32)
-2:2/0/custom_data_0 = &"tower"
-1:2/size_in_atlas = Vector2i(1, 2)
-1:2/0 = 0
-1:2/0/texture_origin = Vector2i(0, 32)
-1:2/0/custom_data_0 = &"warehouse"
-0:2/size_in_atlas = Vector2i(1, 2)
-0:2/0 = 0
-0:2/0/texture_origin = Vector2i(0, 32)
-0:4/size_in_atlas = Vector2i(1, 2)
-0:4/0 = 0
-0:4/0/texture_origin = Vector2i(0, 32)
-0:4/0/custom_data_0 = &"garden"
-0:4/0/custom_data_2 = 10
-0:4/0/custom_data_3 = 10
-2:4/size_in_atlas = Vector2i(1, 2)
-2:4/0 = 0
-2:4/0/texture_origin = Vector2i(0, 32)
-2:4/0/custom_data_0 = &"dome"
-2:4/0/custom_data_1 = 50
-3:4/size_in_atlas = Vector2i(1, 2)
-3:4/0 = 0
-3:4/0/texture_origin = Vector2i(0, 32)
-3:4/0/custom_data_0 = &"dome"
-3:4/0/custom_data_1 = 50
-0:0/size_in_atlas = Vector2i(1, 2)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 32)
-0:0/0/custom_data_0 = &"warehouse"
-1:4/size_in_atlas = Vector2i(1, 2)
-1:4/0 = 0
-1:4/0/texture_origin = Vector2i(0, 32)
-1:4/0/custom_data_0 = &"dome"
-1:4/0/custom_data_1 = 50
-1:6/size_in_atlas = Vector2i(1, 2)
-1:6/0 = 0
-1:6/0/texture_origin = Vector2i(0, 16)
-1:6/0/custom_data_0 = &"dome"
-1:6/0/custom_data_1 = 50
-0:6/size_in_atlas = Vector2i(1, 2)
-0:6/0 = 0
-0:6/0/texture_origin = Vector2i(0, 32)
-0:6/0/custom_data_0 = &"garden"
-0:6/0/custom_data_2 = 10
-0:6/0/custom_data_3 = 10
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lld7a"]
-texture = ExtResource("1_uavov")
-texture_region_size = Vector2i(128, 64)
-3:0/size_in_atlas = Vector2i(1, 2)
-3:0/0 = 0
-3:0/0/texture_origin = Vector2i(0, 32)
-3:3/size_in_atlas = Vector2i(1, 2)
-3:3/0 = 0
-3:3/0/texture_origin = Vector2i(0, 16)
-0:2/size_in_atlas = Vector2i(1, 2)
-0:2/0 = 0
-0:2/0/texture_origin = Vector2i(0, 32)
-
-[sub_resource type="TileSet" id="TileSet_1rr2y"]
-tile_shape = 1
-tile_layout = 5
-tile_size = Vector2i(128, 64)
-custom_data_layer_0/name = "type"
-custom_data_layer_0/type = 21
-custom_data_layer_1/name = "pop"
-custom_data_layer_1/type = 2
-custom_data_layer_2/name = "food"
-custom_data_layer_2/type = 2
-custom_data_layer_3/name = "morale"
-custom_data_layer_3/type = 2
-sources/0 = SubResource("TileSetAtlasSource_b1y6t")
-sources/1 = SubResource("TileSetAtlasSource_lld7a")
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_oewtb")
 
@@ -137,7 +43,7 @@ tile_set = SubResource("TileSet_lyvod")
 y_sort_enabled = true
 texture_filter = 1
 tile_map_data = PackedByteArray("AAABAP7/AAACAAIAAAABAAAAAAABAAAAAAABAAIAAAABAAIAAAACAPz/AAABAAAAAAACAP3/AAADAAAAAAACAP7/AAABAAIAAAACAP//AAACAAAAAAACAAAAAAABAAAAAAACAAEAAAAAAAIAAAACAAIAAAACAAAAAAACAAgAAAADAAIAAAADAPv/AAAAAAIAAAADAPz/AAABAAAAAAADAP3/AAAAAAIAAAADAP7/AAABAAIAAAADAAAAAAAAAAQAAAADAAEAAAAAAAQAAAADAAIAAAABAAAAAAADAAMAAAAAAAQAAAADAAQAAAAAAAQAAAADAAYAAAADAAIAAAADAAcAAAADAAIAAAADAAgAAAADAAIAAAAEAPr/AAAAAAQAAAAEAPz/AAAAAAIAAAAEAP3/AAABAAIAAAAEAP7/AAAAAAQAAAAEAP//AAAAAAQAAAAEAAAAAAAAAAIAAAAEAAEAAAADAAAAAAAEAAIAAAACAAAAAAAEAAMAAAABAAIAAAAEAAQAAAAAAAQAAAAEAAUAAAAAAAQAAAAEAAYAAAAAAAQAAAAEAAkAAAADAAIAAAAEAAoAAAADAAQAAAAFAPr/AAADAAAAAAAFAPv/AAAAAAQAAAAFAPz/AAAAAAQAAAAFAP3/AAAAAAQAAAAFAP7/AAAAAAQAAAAFAP//AAAAAAAAAAAFAAAAAAADAAAAAAAFAAEAAAACAAIAAAAFAAIAAAAAAAQAAAAFAAMAAAAAAAAAAAAFAAQAAAADAAIAAAAFAAUAAAAAAAQAAAAFAAYAAAABAAAAAAAFAAcAAAACAAAAAAAFAAgAAAADAAQAAAAFAAkAAAADAAQAAAAFAAoAAAADAAQAAAAGAPr/AAACAAIAAAAGAPz/AAACAAAAAAAGAP3/AAADAAAAAAAGAP7/AAAAAAQAAAAGAP//AAAAAAQAAAAGAAAAAAAAAAQAAAAGAAEAAAADAAIAAAAGAAIAAAAAAAIAAAAGAAMAAAADAAIAAAAGAAQAAAAAAAQAAAAGAAUAAAAAAAQAAAAGAAYAAAAAAAQAAAAGAAgAAQADAAAAAAAGAAkAAAAAAAQAAAAGAAsAAAADAAQAAAAGAAwAAAADAAQAAAAHAPv/AAAAAAIAAAAHAPz/AAAAAAQAAAAHAP3/AAAAAAQAAAAHAP7/AAACAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAIAAAAHAAEAAAAAAAQAAAAHAAIAAAAAAAQAAAAHAAMAAAADAAIAAAAHAAQAAAAAAAQAAAAHAAUAAAADAAIAAAAHAAYAAAAAAAQAAAAHAAcAAAAAAAQAAAAIAPr/AAAAAAQAAAAIAPv/AAAAAAQAAAAIAPz/AAABAAAAAAAIAP3/AAAAAAQAAAAIAP7/AAADAAAAAAAIAP//AAABAAIAAAAIAAAAAAAAAAQAAAAIAAEAAAAAAAQAAAAIAAMAAAAAAAQAAAAIAAQAAAABAAQAAAAIAAUAAAAAAAQAAAAIAAYAAAADAAAAAAAIAAcAAAAAAAQAAAAIAAgAAAAAAAQAAAAJAPn/AAAAAAQAAAAJAPv/AAAAAAQAAAAJAPz/AAAAAAIAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAQAAAAJAP//AAAAAAQAAAAJAAAAAAADAAIAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAUAAAAAAAQAAAAJAAYAAAAAAAQAAAAJAAcAAAAAAAQAAAAJAAgAAAADAAAAAAAJAAkAAAAAAAQAAAAJAAoAAAAAAAQAAAAKAPv/AAABAAIAAAAKAPz/AAABAAAAAAAKAP3/AAAAAAQAAAAKAP7/AAADAAAAAAAKAP//AAAAAAQAAAAKAAAAAAACAAAAAAAKAAYAAAACAAQAAAAKAAcAAAAAAAQAAAAKAAgAAAAAAAQAAAAKAAkAAAAAAAQAAAAKAAoAAAAAAAQAAAALAPj/AAACAAAAAAALAPn/AAACAAAAAAALAP7/AAAAAAQAAAALAP//AAAAAAQAAAALAAAAAAACAAAAAAALAAEAAAAAAAQAAAALAAIAAAAAAAQAAAALAAQAAAACAAQAAAALAAUAAAACAAQAAAALAAYAAAACAAQAAAALAAoAAAAAAAQAAAALAAsAAAAAAAQAAAAMAPb/AAACAAAAAAAMAPf/AAACAAAAAAAMAPn/AAACAAAAAAAMAPr/AAACAAAAAAAMAP3/AAACAAAAAAAMAP//AAAAAAQAAAAMAAAAAAAAAAQAAAAMAAEAAAAAAAQAAAAMAAIAAAACAAAAAAAMAAMAAAAAAAQAAAAMAAQAAAAAAAQAAAAMAAUAAAAAAAQAAAAMAAcAAAACAAQAAAAMAAgAAAACAAQAAAANAPf/AAACAAAAAAANAPz/AAADAAAAAAANAP3/AAADAAAAAAANAP7/AAAAAAQAAAANAAEAAAAAAAQAAAANAAIAAAAAAAQAAAANAAMAAAAAAAQAAAANAAQAAAACAAQAAAANAAYAAQADAAAAAAANAAgAAAAAAAQAAAANAAkAAAACAAQAAAANAAoAAAAAAAQAAAAOAPr/AAADAAAAAAAOAPv/AAADAAAAAAAOAPz/AAAAAAQAAAAOAP3/AAADAAAAAAAOAP7/AAADAAAAAAAOAAMAAAACAAQAAAAOAAQAAAACAAQAAAAOAAUAAAABAAYAAAAPAPb/AAAAAAQAAAAPAPf/AAADAAQAAAAPAPz/AAAAAAQAAAAPAP3/AAADAAAAAAAPAP//AQADAAAAAAAPAAEAAQADAAAAAAAPAAQAAAACAAQAAAAQAPb/AAADAAQAAAAQAPf/AAAAAAQAAAAQAPj/AAABAAQAAAAQAP3/AAAAAAYAAAAQAP7/AAAAAAYAAAAQAAQAAAACAAQAAAARAPf/AAADAAQAAAARAPj/AAAAAAQAAAARAAQAAAACAAQAAAARAAUAAAACAAQAAAASAPf/AAADAAQAAAAQAPv/AAABAAQAAAAQAPr/AAABAAQAAAAQAPn/AAABAAQAAAARAPr/AAABAAQAAAASAPr/AAABAAQAAAARAPn/AAAAAAQAAAAPAAUAAAABAAQAAAANAPv/AAABAAQAAAASAAIAAAABAAQAAAATAAEAAAACAAQAAAAJAAQAAAAAAAQAAAASAP3/AQADAAMAAAASAPz/AQADAAMAAAATAPv/AQADAAMAAAATAPz/AQADAAMAAAAUAPz/AQADAAMAAAAUAPv/AQADAAMAAAAUAPr/AQADAAMAAAAVAPr/AQADAAMAAAAVAPn/AQADAAMAAAAAAAQAAQADAAMAAAAAAAUAAQADAAMAAAAAAAYAAQADAAMAAAD//wUAAQADAAMAAAD//wQAAQADAAMAAAD+/wQAAQADAAMAAAD+/wUAAQADAAMAAAAYAPT/AQADAAMAAAAZAPT/AQADAAMAAAAZAPP/AQADAAMAAAAaAPP/AQADAAMAAAAaAPT/AQADAAMAAAAbAPT/AQADAAMAAAAbAPX/AQADAAMAAAAbAPb/AQADAAMAAAAcAPb/AQADAAMAAAAcAPf/AQADAAMAAAAdAPf/AQADAAMAAAAdAPj/AQADAAMAAAAQAAAAAQAAAAIAAAAUAAAAAQAAAAIAAAAQAP//AQAAAAIAAAAaAPj/AQAAAAIAAAAYAPb/AQAAAAIAAAAWAPb/AQAAAAIAAAARAP//AAABAAYAAAARAP7/AAAAAAYAAAARAPv/AAABAAYAAAASAPj/AAABAAYAAAANAAUAAAABAAYAAAAOAAYAAAABAAYAAAAQAPz/AAAAAAYAAAAPAPv/AAAAAAYAAAAPAPr/AAAAAAYAAAANAAAAAAAAAAYAAAAVAAAAAAAAAAQAAAAWAAAAAAAAAAYAAAA=")
-tile_set = SubResource("TileSet_1rr2y")
+tile_set = ExtResource("3_n3yot")
 
 [node name="Target" type="Sprite2D" parent="Buildings"]
 position = Vector2(385, 477)
@@ -148,6 +54,7 @@ position = Vector2(738, 339)
 script = ExtResource("2_od5ws")
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("6_e5y23")
 
 [node name="Panel2" type="Panel" parent="UI"]
 anchors_preset = 10
@@ -178,12 +85,6 @@ text = "Title
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="UI/BuildPicker"]
-position = Vector2(92.5, 93)
-texture = ExtResource("1_o2hqy")
-region_enabled = true
-region_rect = Rect2(387.325, 300.398, 124.675, 83.853)
 
 [node name="ListBtn" type="Button" parent="UI/BuildPicker"]
 layout_mode = 1
@@ -226,6 +127,11 @@ grow_horizontal = 0
 grow_vertical = 0
 text = ">"
 
+[node name="BuildSelect" type="TileMapLayer" parent="UI/BuildPicker"]
+position = Vector2(31, 62)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAIAAAA=")
+tile_set = ExtResource("3_n3yot")
+
 [node name="Info" type="Panel" parent="UI"]
 offset_left = 15.0
 offset_top = 11.0
@@ -256,4 +162,33 @@ grow_vertical = 0
 text = "Turn
 "
 
+[node name="ChooseBuilding" type="Panel" parent="UI"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.807843)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AllBuildings" type="TextureRect" parent="UI/ChooseBuilding"]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 286.0
+offset_right = 720.0
+offset_bottom = 286.0
+mouse_filter = 0
+texture = ExtResource("1_o2hqy")
+
+[node name="BuildingPlacer" type="Sprite2D" parent="."]
+position = Vector2(-54, -26)
+texture = ExtResource("1_o2hqy")
+offset = Vector2(0, -32)
+region_enabled = true
+region_rect = Rect2(2.28645, 142.199, 119.429, 116.658)
+
+[connection signal="selected_building" from="UI" to="." method="_on_ui_selected_building"]
+[connection signal="gui_input" from="UI/BuildPicker" to="UI" method="_on_build_picker_gui_input"]
 [connection signal="pressed" from="UI/Turn" to="." method="_on_turn_pressed"]
+[connection signal="gui_input" from="UI/ChooseBuilding" to="UI" method="_on_choose_building_gui_input"]
+[connection signal="gui_input" from="UI/ChooseBuilding/AllBuildings" to="UI" method="_on_all_buildings_gui_input"]

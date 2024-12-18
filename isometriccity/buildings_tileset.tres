@@ -1,0 +1,103 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://hfnclqg4uy2k"]
+
+[ext_resource type="Texture2D" uid="uid://5nkd66wnenks" path="res://buildings.png" id="1_4asea"]
+[ext_resource type="Texture2D" uid="uid://cbo7d7qnj0pp" path="res://gound.png" id="2_xw7kh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ykxxl"]
+texture = ExtResource("1_4asea")
+texture_region_size = Vector2i(128, 64)
+1:0/size_in_atlas = Vector2i(1, 2)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 32)
+1:0/0/custom_data_0 = &"tower"
+2:0/size_in_atlas = Vector2i(1, 2)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 32)
+2:0/0/custom_data_0 = &"warehouse"
+3:0/size_in_atlas = Vector2i(1, 2)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 32)
+3:0/0/custom_data_0 = &"dome"
+3:0/0/custom_data_1 = 50
+3:2/size_in_atlas = Vector2i(1, 2)
+3:2/0 = 0
+3:2/0/texture_origin = Vector2i(0, 32)
+3:2/0/custom_data_0 = &"teamsters"
+2:2/size_in_atlas = Vector2i(1, 2)
+2:2/0 = 0
+2:2/0/texture_origin = Vector2i(0, 32)
+2:2/0/custom_data_0 = &"tower"
+1:2/size_in_atlas = Vector2i(1, 2)
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, 32)
+1:2/0/custom_data_0 = &"warehouse"
+0:2/size_in_atlas = Vector2i(1, 2)
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, 32)
+0:4/size_in_atlas = Vector2i(1, 2)
+0:4/0 = 0
+0:4/0/texture_origin = Vector2i(0, 32)
+0:4/0/custom_data_0 = &"garden"
+0:4/0/custom_data_2 = 10
+0:4/0/custom_data_3 = 10
+2:4/size_in_atlas = Vector2i(1, 2)
+2:4/0 = 0
+2:4/0/texture_origin = Vector2i(0, 32)
+2:4/0/custom_data_0 = &"dome"
+2:4/0/custom_data_1 = 50
+3:4/size_in_atlas = Vector2i(1, 2)
+3:4/0 = 0
+3:4/0/texture_origin = Vector2i(0, 32)
+3:4/0/custom_data_0 = &"dome"
+3:4/0/custom_data_1 = 50
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/custom_data_0 = &"warehouse"
+1:4/size_in_atlas = Vector2i(1, 2)
+1:4/0 = 0
+1:4/0/texture_origin = Vector2i(0, 32)
+1:4/0/custom_data_0 = &"dome"
+1:4/0/custom_data_1 = 50
+1:6/size_in_atlas = Vector2i(1, 2)
+1:6/0 = 0
+1:6/0/texture_origin = Vector2i(0, 32)
+1:6/0/custom_data_0 = &"dome"
+1:6/0/custom_data_1 = 50
+0:6/size_in_atlas = Vector2i(1, 2)
+0:6/0 = 0
+0:6/0/texture_origin = Vector2i(0, 32)
+0:6/0/custom_data_0 = &"garden"
+0:6/0/custom_data_2 = 10
+0:6/0/custom_data_3 = 10
+3:6/size_in_atlas = Vector2i(1, 2)
+3:6/0 = 0
+3:6/0/texture_origin = Vector2i(0, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltymn"]
+texture = ExtResource("2_xw7kh")
+texture_region_size = Vector2i(128, 64)
+3:0/size_in_atlas = Vector2i(1, 2)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 32)
+3:3/size_in_atlas = Vector2i(1, 2)
+3:3/0 = 0
+3:3/0/texture_origin = Vector2i(0, 16)
+0:2/size_in_atlas = Vector2i(1, 2)
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, 32)
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(128, 64)
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 21
+custom_data_layer_1/name = "pop"
+custom_data_layer_1/type = 2
+custom_data_layer_2/name = "food"
+custom_data_layer_2/type = 2
+custom_data_layer_3/name = "morale"
+custom_data_layer_3/type = 2
+sources/0 = SubResource("TileSetAtlasSource_ykxxl")
+sources/1 = SubResource("TileSetAtlasSource_ltymn")
