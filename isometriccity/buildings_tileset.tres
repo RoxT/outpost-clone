@@ -73,6 +73,10 @@ texture_region_size = Vector2i(128, 64)
 3:6/size_in_atlas = Vector2i(1, 2)
 3:6/0 = 0
 3:6/0/texture_origin = Vector2i(0, 32)
+2:6/size_in_atlas = Vector2i(1, 2)
+2:6/0 = 0
+2:6/0/texture_origin = Vector2i(0, 32)
+2:6/0/custom_data_0 = &"tube"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltymn"]
 texture = ExtResource("2_xw7kh")

@@ -29,5 +29,7 @@ func read_atlas(type:String, coords:Vector2i):
 			info_label.add_text("Connects communications within 10 spaces.")
 		"warehouse":
 			info_label.add_text("Stroes")
+		"tube":
+			info_label.add_text("Tube connecting above and below ground for people and cargo.")
 		var ut:
 			info_label.add_text("%s\nno description." % ut)

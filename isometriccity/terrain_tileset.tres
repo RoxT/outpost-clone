@@ -1,0 +1,25 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://jw8cxp1davy6"]
+
+[ext_resource type="Texture2D" uid="uid://cbo7d7qnj0pp" path="res://gound.png" id="1_jgryq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6dxvd"]
+texture = ExtResource("1_jgryq")
+texture_region_size = Vector2i(128, 64)
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/custom_data_0 = 5
+2:1/0 = 0
+2:1/0/custom_data_0 = 10
+1:2/0 = 0
+1:2/0/custom_data_0 = 5
+2:2/0 = 0
+2:3/0 = 0
+3:2/0 = 0
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(128, 64)
+custom_data_layer_0/name = "food"
+custom_data_layer_0/type = 2
+sources/2 = SubResource("TileSetAtlasSource_6dxvd")
