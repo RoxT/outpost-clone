@@ -37,8 +37,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		if building_placer.visible:
 			var surface = building_layer == $Buildings
 			var map_coord = global_mouse_to_building_coords()
-			add_construction(map_coord, randi()%3+1, $UI.last_atlas, 
-			$UI.last_source_id, surface)
+			var terrain:TileMapLayer = $Terrain if surface else $UTerrain
+			var terrain_x = terrain.get_cell_atlas_coords(map_coord).x
+			if terrain_x > -1:
+				add_construction(map_coord, terrain_x+1, $UI.last_atlas, 
+				$UI.last_source_id, surface)
 			#building.set_cell(map_coord, $UI.last_source_id, $UI.last_atlas)
 		else:
 			var coord = global_mouse_to_building_coords()
@@ -82,9 +85,15 @@ func _on_turn_pressed() -> void:
 		c[&"turns_left"] -= 1
 		if c[&"turns_left"] <= 0:
 			var layer:TileMapLayer = $Buildings if c.surface else $UBuildings
-			if layer.tile_set.get_source(0).get_tile_data(c.atlas, 0).get_custom_data("type") == "tube":
+			var type = layer.tile_set.get_source(0).get_tile_data(c.atlas, 0).get_custom_data("type")
+			if  type == "tube":
 				$Buildings.set_cell(c.location, c.source, c.atlas)
 				$UBuildings.set_cell(c.location, c.source, c.atlas)
+				var neighbours = $UBuildings.get_surrounding_cells(c.location)
+				for cell in neighbours:
+					print($UBuildings.get_cell_source_id(cell))
+					if $UBuildings.get_cell_source_id(cell) == -1:
+						$UTerrain.set_cell(cell, 2, Vector2i(1,2))
 			else:
 				layer.set_cell(c.location, c.source, c.atlas)
 			del.push_front(i)

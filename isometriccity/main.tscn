@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://d3wo4lowr83ju"]
+[gd_scene load_steps=13 format=4 uid="uid://d3wo4lowr83ju"]
 
 [ext_resource type="Texture2D" uid="uid://5nkd66wnenks" path="res://buildings.png" id="1_o2hqy"]
 [ext_resource type="Script" path="res://main.gd" id="1_oewtb"]
@@ -8,6 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://cuogc85ektob4" path="res://target.png" id="4_vnykd"]
 [ext_resource type="Script" path="res://info.gd" id="5_xiu6d"]
 [ext_resource type="Script" path="res://UI/ui.gd" id="6_e5y23"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_se2iv"]
+action = &"turn"
+
+[sub_resource type="Shortcut" id="Shortcut_xftg6"]
+events = [SubResource("InputEventAction_se2iv")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_d2y66"]
+action = &"toggle_level"
+
+[sub_resource type="Shortcut" id="Shortcut_aqyuq"]
+events = [SubResource("InputEventAction_d2y66")]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_oewtb")
@@ -19,6 +31,7 @@ tile_set = ExtResource("2_xkv5g")
 
 [node name="UTerrain" type="TileMapLayer" parent="."]
 texture_filter = 1
+tile_map_data = PackedByteArray("AAAKAAUAAgABAAEAAAAKAAMAAgABAAEAAAANAAYAAgABAAEAAAANAP3/AgABAAEAAAAIAAAAAgABAAEAAAA=")
 tile_set = ExtResource("2_xkv5g")
 
 [node name="Buildings" type="TileMapLayer" parent="."]
@@ -147,6 +160,7 @@ offset_right = -48.0
 offset_bottom = -36.0
 grow_horizontal = 0
 grow_vertical = 0
+shortcut = SubResource("Shortcut_xftg6")
 text = "Turn
 "
 
@@ -169,7 +183,7 @@ mouse_filter = 0
 texture = ExtResource("1_o2hqy")
 
 [node name="SurfaceBtn" type="Button" parent="UI"]
-anchors_preset = -1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 61.0
@@ -178,6 +192,7 @@ offset_right = 182.0
 offset_bottom = -36.0
 toggle_mode = true
 button_pressed = true
+shortcut = SubResource("Shortcut_aqyuq")
 text = "Surface"
 metadata/_edit_use_anchors_ = true
 
