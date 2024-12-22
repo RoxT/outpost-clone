@@ -18,13 +18,15 @@ func _on_build_picker_gui_input(event:InputEvent):
 		
 		$ChooseBuilding.show()
 
-func _on_all_buildings_gui_input(event:InputEvent):
+func _on_all_buildings_gui_input(event:InputEvent, child_index:int, source_id:int):
 	if event.is_action_pressed("select"):
 		var build_selector:TileMapLayer = $BuildPicker/BuildSelect
-		last_source_id = build_selector.get_cell_source_id(Vector2i.ZERO)
+		var point := Vector2i($ChooseBuilding.get_child(child_index).get_local_mouse_position()
+		/Vector2(128.0,64.0))
+		
+		last_source_id = source_id
 		var source:TileSetAtlasSource = build_selector.tile_set.get_source(last_source_id)
 		
-		var point := Vector2i($ChooseBuilding/AllBuildings.get_local_mouse_position()/Vector2(128.0,64.0))
 		last_atlas = source.get_tile_at_coords(point)
 		
 		$BuildPicker/BuildSelect.set_cell(Vector2i.ZERO, last_source_id, last_atlas)

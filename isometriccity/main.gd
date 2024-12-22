@@ -1,9 +1,11 @@
 extends Node2D
 
-@onready var target := $Buildings/Target
 @onready var building_placer = $BuildingPlacer
 
 const CONSTRUCTION := Vector2i(3, 6)
+const U_BUILDING_SOURCE := 2
+const BUILDING_SOURCE := 0
+const TERRAIN_SOURCE = 2
 
 var turn := 0
 var pop := 0
@@ -25,6 +27,7 @@ func global_mouse_to_building_coords()->Vector2i:
 	return building_layer.local_to_map(building_layer.to_local(get_global_mouse_position()))
 
 func toggle_ground(surface:bool):
+	$UI/SurfaceBtn.text = "Surface" if surface else "Ground"
 	$Terrain.visible = surface
 	$Buildings.visible = surface
 	$UTerrain.visible = not surface
@@ -49,7 +52,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			var type = ""
 			if data:
 				type = data.get_custom_data("type")
-				target.position = building_layer.map_to_local(coord)
 			if type == "warehouse":
 				$UI/Info.show_warehouse(coord, pop, food, morale)
 			else:
@@ -85,13 +87,12 @@ func _on_turn_pressed() -> void:
 		c[&"turns_left"] -= 1
 		if c[&"turns_left"] <= 0:
 			var layer:TileMapLayer = $Buildings if c.surface else $UBuildings
-			var type = layer.tile_set.get_source(0).get_tile_data(c.atlas, 0).get_custom_data("type")
+			var type = layer.tile_set.get_source(c.source).get_tile_data(c.atlas, 0).get_custom_data("type")
 			if  type == "tube":
 				$Buildings.set_cell(c.location, c.source, c.atlas)
 				$UBuildings.set_cell(c.location, c.source, c.atlas)
 				var neighbours = $UBuildings.get_surrounding_cells(c.location)
 				for cell in neighbours:
-					print($UBuildings.get_cell_source_id(cell))
 					if $UBuildings.get_cell_source_id(cell) == -1:
 						$UTerrain.set_cell(cell, 2, Vector2i(1,2))
 			else:
@@ -102,9 +103,10 @@ func _on_turn_pressed() -> void:
 
 
 func _on_ui_selected_building(atlas_coords, source_id):
-		var source:TileSetAtlasSource = building_layer.tile_set.get_source(source_id)
-		building_placer.region_rect = source.get_tile_texture_region(atlas_coords)
-		building_placer.show()
+	var source:TileSetAtlasSource = building_layer.tile_set.get_source(source_id)
+	building_placer.texture = source.texture
+	building_placer.region_rect = source.get_tile_texture_region(atlas_coords)
+	building_placer.show()
 
 func add_construction(location:Vector2i, turns_left:int, 
 atlas:Vector2i, source:int, surface:bool):
