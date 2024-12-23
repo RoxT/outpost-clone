@@ -64,6 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_turn_pressed() -> void:
 	building_placer.hide()
+	$Terrain.do_turn()
 	var new_food := 0
 	var new_pop := 0
 	var new_morale := 0
@@ -116,3 +117,6 @@ atlas:Vector2i, source:int, surface:bool):
 
 func _on_surface_btn_toggled(toggled_on):
 	toggle_ground(toggled_on)
+
+func _on_generate_pressed():
+	$Terrain.generate_planet()
