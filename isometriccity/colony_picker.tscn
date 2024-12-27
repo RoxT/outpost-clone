@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://x0tyffb3sf64"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ulgy"]
+radius = 33.0606
+
+[node name="ColonyPicker" type="Area2D"]
+z_index = 5
+z_as_relative = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.190796, -2.52319)
+shape = SubResource("CircleShape2D_4ulgy")

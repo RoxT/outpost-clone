@@ -13,6 +13,15 @@ func show_warehouse(coords:Vector2i, pop:int, food:int, morale:int):
 	
 func clear():
 	info_label.clear()
+	
+func show_seed_capsule(coords:Vector2i, col_name:String):
+	info_label.clear()
+	info_label.add_text("%s" % coords)
+	info_label.newline()
+	info_label.add_text("%s" % col_name)
+	info_label.newline()
+	info_label.add_text("The seed capsule provides housing and food for a small population." + 
+	"\nClick on a seed capsule to switch colony views.")
 
 func read_atlas(type:String, coords:Vector2i):
 	info_label.clear()
@@ -28,8 +37,10 @@ func read_atlas(type:String, coords:Vector2i):
 		"tower":
 			info_label.add_text("Connects communications within 10 spaces.")
 		"warehouse":
-			info_label.add_text("Stroes")
+			print("warehouse should be called specially")
 		"tube":
 			info_label.add_text("Tube connecting above and below ground for people and cargo.")
+		"seed":
+			print("seed should be called specially")
 		var ut:
 			info_label.add_text("%s\nno description." % ut)
