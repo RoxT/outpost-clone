@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d3wo4lowr83ju"]
+[gd_scene load_steps=16 format=4 uid="uid://d3wo4lowr83ju"]
 
 [ext_resource type="Texture2D" uid="uid://5nkd66wnenks" path="res://buildings.png" id="1_o2hqy"]
 [ext_resource type="Script" path="res://main.gd" id="1_oewtb"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://buildings.gd" id="5_5crnl"]
 [ext_resource type="Script" path="res://info.gd" id="5_xiu6d"]
 [ext_resource type="Script" path="res://ui.gd" id="6_e5y23"]
-[ext_resource type="Texture2D" uid="uid://bw18x4a27xuti" path="res://u_buildings.png" id="9_7sthr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5aj3g"]
 
@@ -54,6 +53,7 @@ tile_map_data = PackedByteArray("AAAKAAUAAgABAAEAAAAKAAMAAgABAAEAAAANAAYAAgABAAE
 tile_set = ExtResource("2_xkv5g")
 
 [node name="Surface" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Buildings" type="TileMapLayer" parent="Surface"]
 y_sort_enabled = true
@@ -64,11 +64,12 @@ script = ExtResource("5_5crnl")
 colony_name = "Colony1"
 
 [node name="Underground" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="UBuildings" type="TileMapLayer" parent="Underground"]
 y_sort_enabled = true
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAJAAcAAAABAAQAAAAJAAYAAAABAAQAAAAJAAUAAAABAAQAAAAJAAQAAAABAAQAAAAJAAMAAAAAAAYAAAAJAAIAAAAAAAYAAAAJAAEAAAABAAQAAAAJAAAAAAAAAAYAAAAJAP//AAAAAAYAAAAKAP//AAABAAQAAAAKAP7/AAABAAQAAAAOAP3/AAABAAQAAAALAAUAAAAAAAYAAAAMAP3/AAAAAAYAAAAMAAQAAgABAAIAAAANAAUAAgABAAIAAAAMAAUAAgABAAIAAAAMAAYAAgABAAIAAAANAAYAAgABAAIAAAAPAAEAAgACAAYAAAA=")
+tile_map_data = PackedByteArray("AAAJAAcAAgAAAAAAAAAJAAYAAgAAAAAAAAAJAAUAAgAAAAAAAAAJAAQAAgAAAAAAAAAJAAMAAAAAAAYAAAAJAAIAAAAAAAYAAAAJAAEAAgAAAAAAAAAJAAAAAAAAAAYAAAAJAP//AAAAAAYAAAAKAP//AAABAAQAAAAKAP7/AgAAAAAAAAAOAP3/AgAAAAAAAAALAAUAAAAAAAYAAAAMAP3/AAAAAAYAAAAMAAQAAgABAAIAAAANAAUAAgABAAIAAAAMAAUAAgABAAIAAAAMAAYAAgABAAIAAAANAAYAAgABAAIAAAAPAAEAAgACAAYAAAA=")
 tile_set = ExtResource("3_n3yot")
 script = ExtResource("5_5crnl")
 surface = false
@@ -198,23 +199,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Panel" type="Panel" parent="UI/ChooseBuilding"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -276.0
+offset_right = 274.0
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="AllBuildings" type="TextureRect" parent="UI/ChooseBuilding"]
-layout_mode = 0
-offset_left = 277.0
-offset_top = 307.0
-offset_right = 789.0
-offset_bottom = 819.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("1_o2hqy")
-
-[node name="UAllBuildings" type="TextureRect" parent="UI/ChooseBuilding"]
-layout_mode = 0
-offset_left = 1106.0
-offset_top = 307.0
-offset_right = 1618.0
-offset_bottom = 819.0
-mouse_filter = 0
-texture = ExtResource("9_7sthr")
 
 [node name="SurfaceBtn" type="Button" parent="UI"]
 anchors_preset = 2
@@ -239,6 +253,7 @@ text = "Generate"
 
 [node name="BuildingPlacer" type="Sprite2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(-54, -26)
 texture = ExtResource("1_o2hqy")
 offset = Vector2(0, -32)
@@ -249,7 +264,6 @@ region_rect = Rect2(2.28645, 142.199, 119.429, 116.658)
 [connection signal="gui_input" from="UI/BuildPicker" to="UI" method="_on_build_picker_gui_input"]
 [connection signal="pressed" from="UI/Turn" to="." method="_on_turn_pressed"]
 [connection signal="gui_input" from="UI/ChooseBuilding" to="UI" method="_on_choose_building_gui_input"]
-[connection signal="gui_input" from="UI/ChooseBuilding/AllBuildings" to="UI" method="_on_all_buildings_gui_input" binds= [0, 0]]
-[connection signal="gui_input" from="UI/ChooseBuilding/UAllBuildings" to="UI" method="_on_all_buildings_gui_input" binds= [1, 2]]
+[connection signal="gui_input" from="UI/ChooseBuilding/AllBuildings" to="UI" method="_on_all_buildings_gui_input"]
 [connection signal="toggled" from="UI/SurfaceBtn" to="." method="_on_surface_btn_toggled"]
 [connection signal="pressed" from="UI/Generate" to="." method="_on_generate_pressed"]

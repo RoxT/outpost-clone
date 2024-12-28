@@ -16,7 +16,7 @@ var constructions := []
 @onready var terrain_layer:TileMapLayer = $Terrain
 
 func _ready() -> void:
-	toggle_ground(true)
+	toggle_level(true)
 	$UI.show()
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -26,7 +26,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func global_mouse_to_building_coords()->Vector2i:
 	return building_layer.local_to_map(building_layer.to_local(get_global_mouse_position()))
 
-func toggle_ground(surface:bool):
+func toggle_level(surface:bool):
 	var i = building_layer.get_index()
 	for u in $Underground.get_children():
 		u.visible = not surface
@@ -37,6 +37,9 @@ func toggle_ground(surface:bool):
 	$UTerrain.visible = not surface
 	building_layer = $Surface.get_child(i) if surface else $Underground.get_child(i)
 	terrain_layer = $Terrain if surface else $UTerrain
+	$UI/ChooseBuilding.hide()
+	$BuildingPlacer.hide()
+	$UI.toggle_level(surface)
 
 func switch_colony(new_i:int):
 	building_layer = $Surface.get_child(new_i) if building_layer.surface else $Underground.get_child(new_i)
@@ -102,13 +105,13 @@ func _on_turn_pressed() -> void:
 			var layer:TileMapLayer = $Surface.get_child(c.index) if c.surface else $Underground.get_child(c.index)
 			var type = layer.tile_set.get_source(c.source).get_tile_data(c.atlas, 0).get_custom_data("type")
 			if  type == "tube":
-				var surface:TileMapLayer = $Surface.get_child(c.index)
-				var underground:TileMapLayer = $Underground.get_child(c.index)
-				surface.set_cell(c.location, c.source, c.atlas)
-				underground.set_cell(c.location, c.source, c.atlas)
-				var neighbours = underground.get_surrounding_cells(c.location)
+				var surface_layer:TileMapLayer = $Surface.get_child(c.index)
+				var underground_layer:TileMapLayer = $Underground.get_child(c.index)
+				surface_layer.set_cell(c.location, c.source, c.atlas)
+				underground_layer.set_cell(c.location, c.source, c.atlas)
+				var neighbours = underground_layer.get_surrounding_cells(c.location)
 				for cell in neighbours:
-					if underground.get_cell_source_id(cell) == -1:
+					if underground_layer.get_cell_source_id(cell) == -1:
 						$UTerrain.set_cell(cell, 2, Vector2i(1,2))
 			elif type == "seed":
 				var old_colony_i = layer.get_index()
@@ -148,7 +151,7 @@ atlas:Vector2i, source:int, surface:bool, index:int):
 	&"atlas": atlas, &"source": source, &"surface":surface, &"index":index})
 
 func _on_surface_btn_toggled(toggled_on):
-	toggle_ground(toggled_on)
+	toggle_level(toggled_on)
 
 func _on_generate_pressed():
 	$Terrain.generate_planet()

@@ -8,5 +8,5 @@ z_index = 5
 z_as_relative = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.190796, -2.52319)
+position = Vector2(0.190796, -15.5232)
 shape = SubResource("CircleShape2D_4ulgy")
