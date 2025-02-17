@@ -91,3 +91,4 @@ turn={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.25, 0.230167, 0.2075, 1)

@@ -1,6 +1,32 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://jw8cxp1davy6"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://jw8cxp1davy6"]
 
 [ext_resource type="Texture2D" uid="uid://cbo7d7qnj0pp" path="res://gound.png" id="1_jgryq"]
+[ext_resource type="Texture2D" uid="uid://ck8dkb33ck72v" path="res://terrain.png" id="1_kksf0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sqweu"]
+texture = ExtResource("1_kksf0")
+texture_region_size = Vector2i(128, 64)
+0:0/0 = 0
+0:0/0/custom_data_1 = true
+1:0/0 = 0
+1:0/0/custom_data_1 = true
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+0:1/0/custom_data_1 = true
+1:1/0 = 0
+1:1/0/custom_data_1 = true
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+0:2/0/custom_data_1 = true
+1:2/0 = 0
+1:2/0/custom_data_1 = true
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6dxvd"]
 texture = ExtResource("1_jgryq")
@@ -29,3 +55,4 @@ custom_data_layer_0/type = 2
 custom_data_layer_1/name = "water"
 custom_data_layer_1/type = 1
 sources/2 = SubResource("TileSetAtlasSource_6dxvd")
+sources/0 = SubResource("TileSetAtlasSource_sqweu")

@@ -2,11 +2,12 @@ extends TileMapLayer
 
 @export var noise:NoiseTexture2D
 
-const LowLands := [Vector2i(0,1)]
-const Lands := [Vector2i(1, 1), Vector2i(1,2), Vector2i(2, 1)]
-const HighLands := [Vector2i(2,2),Vector2i(2,3),Vector2i(3,2)]
-const Waters = [Vector2i(1,4)]
-const LowWaters := [Vector2i(2,4)]
+const LowWaters := Vector2i(0,0)
+const Waters = Vector2i(1,0)
+const LowLands := Vector2i(2,0)
+const Lands := Vector2i(3, 0)
+const HighLands := Vector2i(4,0)
+const TERRAIN_ID := 0
 
 const WaterLife := Vector2i(3, 0)
 const PlantLife := Vector2i(0,2)
@@ -43,14 +44,16 @@ func do_turn():
 			if neighbours == 3:
 				# Do as custom data instead?
 				var terrain = get_cell_atlas_coords(cell)
-				if terrain in Lands or terrain in LowLands:
-					new_atlas[cell] = TreeLife
-				elif terrain in Waters or terrain in LowWaters:
-					new_atlas[cell] = WaterLife
-				elif terrain in HighLands:
-					new_atlas[cell] = PlantLife
-				else:
-					print("unknown terrain atlas %s" % terrain)
+				match terrain.x:
+					Lands.x, LowLands.x:
+						new_atlas[cell] = TreeLife
+					Waters.x, LowWaters.x:
+						new_atlas[cell] = WaterLife
+					HighLands.x:
+						new_atlas[cell] = PlantLife
+					_:
+						print("unknown terrain atlas %s" % terrain)
+
 	for cell in new_atlas:
 		life.set_cell(cell, 1, new_atlas[cell])
 			
@@ -58,6 +61,7 @@ func do_turn():
 
 func generate_planet():
 	noise.noise.seed = randi() % 10
+	$Life.clear()
 	var maxx := 0.0
 	var minn = 0.0
 	for x in noise.width:
@@ -67,28 +71,29 @@ func generate_planet():
 			minn = min(value, minn)
 			var coord = Vector2i(x, y)
 			
+			var terrain
 			if value < -0.2:
-				set_cell(Vector2i(x, y), 2, LowWaters.pick_random())
+				terrain = LowWaters
 				if randf() < 0.1:
 					$Life.set_cell(coord, 1, WaterLife)
 			elif value < 0:
-				set_cell(coord, 2, Waters.pick_random())
+				terrain = Waters
 				if randf() < 0.25:
 					$Life.set_cell(coord, 1, WaterLife)
 			elif value < 0.15:
-				set_cell(coord, 2, LowLands.pick_random())
+				terrain = LowLands
 				if randf() < 0.1:
 					$Life.set_cell(coord, 1, TreeLife)
 			elif value < 0.3:
-				set_cell(coord, 2, Lands.pick_random())
+				terrain = Lands
 				if randf() < 0.05:
 					$Life.set_cell(coord, 1, TreeLife)
 			else:
-				set_cell(coord, 2, HighLands.pick_random())
+				terrain = HighLands
 				if randf() < 0.1:
 					$Life.set_cell(coord, 1, PlantLife)
+			terrain.y = randi_range(0, 2);
+			set_cell(Vector2i(x, y), TERRAIN_ID, terrain)
 	print(noise.noise.seed)
 	print(minn)
 	print(maxx)
-	
-	

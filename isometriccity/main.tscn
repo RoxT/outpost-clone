@@ -191,8 +191,6 @@ text = "Turn
 "
 
 [node name="ChooseBuilding" type="Panel" parent="UI"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.807843)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
