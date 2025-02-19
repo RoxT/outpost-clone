@@ -14,6 +14,8 @@ const PlantLife := Vector2i(0,2)
 const TreeLife := Vector2i(3, 3)
 const Empty := Vector2i(-1,-1)
 
+const RoughUnderground := Vector2i(4,1)
+
 const DIRS := [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN,
 	Vector2i(1,1), Vector2i(-1,-1), Vector2i(1,-1), Vector2i(-1,1)]
 

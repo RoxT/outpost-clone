@@ -46,6 +46,20 @@ func _on_all_buildings_gui_input(event:InputEvent):
 		selected_building.emit(last_atlas, last_source_id)
 		$ChooseBuilding.hide()
 
+func _on_all_robots_gui_input(event:InputEvent):
+	if event.is_action_pressed("select"):
+		var build_selector:TileMapLayer = $BuildPicker/BuildSelect
+		var point := Vector2i($ChooseBuilding/AllRobots.get_local_mouse_position()
+		/Vector2(128.0,64.0))
+		
+		last_source_id = 3
+		var source:TileSetAtlasSource = build_selector.tile_set.get_source(last_source_id)
+		
+		last_atlas = source.get_tile_at_coords(point)
+		$BuildPicker/BuildSelect.set_cell(Vector2i.ZERO, last_source_id, last_atlas)
+		selected_building.emit(last_atlas, last_source_id)
+		$ChooseBuilding.hide()
+
 func _on_choose_building_gui_input(event:InputEvent):
 	if event.is_action_pressed("select"):
 		var build_selector:TileMapLayer = $BuildPicker/BuildSelect

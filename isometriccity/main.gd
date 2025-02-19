@@ -2,16 +2,19 @@ extends Node2D
 
 @onready var building_placer = $BuildingPlacer
 
-const CONSTRUCTION := Vector2i(3, 6)
+const CONSTRUCTION := Vector2i(3, 0)
+const TUBE := Vector2i(2,6)
 const U_BUILDING_SOURCE := 2
 const BUILDING_SOURCE := 0
 const TERRAIN_SOURCE = 2
+enum Robots {DOZER, DIGGER, MINER}
+const ROBOT_SOURCE = 3
 
 var turn := 0
 var pop := [0]
 var food := [0]
 var morale := [0]
-var constructions := []
+var constructions :Array[Robot] = []
 @onready var building_layer:TileMapLayer = $Surface.get_child(0)
 @onready var terrain_layer:TileMapLayer = $Terrain
 
@@ -97,22 +100,30 @@ func _on_turn_pressed() -> void:
 		morale[colony_i] = new_morale
 	turn += 1
 	$UI/Turn.text = "Turn %s" % turn
+			
 	var del = []
 	for i in constructions.size():
-		var c = constructions[i]
+		var c:Robot = constructions[i]
 		c.turns_left -= 1
 		if c.turns_left <= 0:
 			var layer:TileMapLayer = $Surface.get_child(c.index) if c.surface else $Underground.get_child(c.index)
 			var type = layer.tile_set.get_source(c.source).get_tile_data(c.atlas, 0).get_custom_data("type")
-			if  type == "tube":
+			if type == "dozer":
+				terrain_layer.set_cell(c.location, $Terrain.TERRAIN_ID, $Terrain.LowLands)
+				layer.erase_cell(c.location)
+			elif type == "miner":
+				layer.erase_cell(c.location) # No mine!
+			elif type == "digger":
 				var surface_layer:TileMapLayer = $Surface.get_child(c.index)
 				var underground_layer:TileMapLayer = $Underground.get_child(c.index)
-				surface_layer.set_cell(c.location, c.source, c.atlas)
-				underground_layer.set_cell(c.location, c.source, c.atlas)
+				layer.erase_cell(c.location)
+				if c.surface:
+					surface_layer.set_cell(c.location, BUILDING_SOURCE, TUBE)
+					underground_layer.set_cell(c.location, BUILDING_SOURCE, TUBE)
 				var neighbours = underground_layer.get_surrounding_cells(c.location)
+				$UTerrain.set_smooth(c.location)
 				for cell in neighbours:
-					if underground_layer.get_cell_source_id(cell) == -1:
-						$UTerrain.set_cell(cell, 2, Vector2i(1,2))
+					$UTerrain.set_rough(cell)
 			elif type == "seed":
 				var old_colony_i = layer.get_index()
 				var old_colony:TileMapLayer = $Surface.get_child(old_colony_i)
@@ -144,11 +155,30 @@ func _on_ui_selected_building(atlas_coords, source_id):
 	building_placer.region_rect = source.get_tile_texture_region(atlas_coords)
 	building_placer.show()
 
+
 func add_construction(location:Vector2i, turns_left:int, 
 atlas:Vector2i, source:int, surface:bool, index:int):
-	building_layer.set_cell(location, source, CONSTRUCTION)
-	constructions.append({&"location": location, &"turns_left": turns_left,
-	&"atlas": atlas, &"source": source, &"surface":surface, &"index":index})
+	if source == ROBOT_SOURCE:
+		building_layer.set_cell(location, source, atlas)
+	else:
+		building_layer.set_cell(location, ROBOT_SOURCE, CONSTRUCTION)
+	constructions.append(Robot.new(location, turns_left, atlas, source, surface, index))
+
+class Robot:
+	var location:Vector2i
+	var turns_left:int
+	var atlas:Vector2i
+	var source:int
+	var surface:bool
+	var index:int
+	func _init(new_location, new_turns_left, new_atlas, new_source, new_surface, new_index):
+		location = new_location
+		turns_left = new_turns_left
+		atlas = new_atlas
+		source = new_source
+		surface = new_surface
+		index = new_index
+
 
 func _on_surface_btn_toggled(toggled_on):
 	toggle_level(toggled_on)
